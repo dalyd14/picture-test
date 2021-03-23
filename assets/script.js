@@ -6,6 +6,8 @@ const getImgBtn = document.getElementById("get-images")
 const handleSubmit = async event => {
     event.preventDefault()
 
+    document.getElementById("saving").style.display = "block"
+
     const formData = new FormData()
     formData.append('imageFile', pictureUploader.files[0])
 
@@ -16,9 +18,12 @@ const handleSubmit = async event => {
 
     const jsonResp = await response.json()
     console.log(jsonResp)
+    pictureUploader.value = null
+    document.getElementById("saving").style.display = "none"
 }
 
 const handleGetImages = async () => {
+    document.getElementById("loading").style.display = "block"
     const response = await fetch('/api/get-images')
 
     const images = await response.json()
@@ -28,6 +33,7 @@ const handleGetImages = async () => {
     })
 
     addImages(readyImgs)
+    document.getElementById("loading").style.display = "none"
 }
 
 const addImages = (images) => {
