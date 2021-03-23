@@ -1,7 +1,6 @@
 const express = require('express')
 const path = require('path')
 const apiRoutes = require('./controller')
-const upload = require('./config/multer-config')
 
 const db = require('./config/connection')
 

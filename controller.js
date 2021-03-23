@@ -3,6 +3,10 @@ const upload = require('./config/multer-config')
 const fs = require('fs')
 const Image = require('./Image')
 
+if (!fs.existsSync('./images')){
+    fs.mkdirSync('./images');
+}
+
 router.post('/save-image', upload.single('imageFile'), async (req, res) => {
     const obj = {
         img: {
